@@ -1,6 +1,7 @@
 import http from 'http';
 import dotenv from 'dotenv';
 import { getAllUsers } from './modules/usersController';
+import { sendResponse } from './utils/helperFunctions';
 
 dotenv.config();
 
@@ -13,8 +14,7 @@ const server = http.createServer((req, res) =>{
 
   if (requestPath !== usersAPI) {
     try {
-      res.writeHead(404, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ message: `Path ${requestPath} is not found` }));
+      sendResponse(res, 404, { message: 'Endpoint not found' });
     } catch (error) {
       console.error('Error occurred while sending response:', error);
     }
@@ -23,19 +23,13 @@ const server = http.createServer((req, res) =>{
 
   try {
     switch (method) {
-      case "GET":
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify(getAllUsers()));
-        break;
-      default:
-        res.writeHead(500, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ message: 'Invalid method' }));
-        break;
+      case "GET": return sendResponse(res, 200, getAllUsers());
+
+      default: return sendResponse(res, 500, { message: 'Invalid method' });
     }
   } catch (error) {
     console.error('Error occurred while processing request:', error);
-    res.writeHead(500, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ message: 'Internal Server Error' }));
+    sendResponse(res, 500, { message: 'Internal Server Error' });
   }
 });
 
