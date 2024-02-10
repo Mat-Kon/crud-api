@@ -1,6 +1,6 @@
 import http, { type IncomingMessage, type ServerResponse } from 'http';
 import dotenv from 'dotenv';
-import { addUser, deleteUser, getAllUsers, handlerGetMethod, updateUser } from './modules/usersController';
+import { addUser, deleteUser, handlerGetMethod, updateUser } from './modules/usersController';
 import { sendResponse } from './utils/helperFunctions';
 
 dotenv.config();

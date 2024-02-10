@@ -4,7 +4,7 @@ import { type IncomingMessage, type ServerResponse } from 'http';
 import { sendResponse } from '../utils/helperFunctions';
 
 const users: User[] = [];
-// username: string, age: number, hobbies: string[]
+
 const addUser = (
   req: IncomingMessage,
   res: ServerResponse<IncomingMessage>
