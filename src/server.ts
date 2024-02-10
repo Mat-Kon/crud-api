@@ -1,6 +1,6 @@
 import http, { type IncomingMessage, type ServerResponse } from 'http';
 import dotenv from 'dotenv';
-import { addUser, getAllUsers, handlerGetMethod } from './modules/usersController';
+import { addUser, deleteUser, getAllUsers, handlerGetMethod, updateUser } from './modules/usersController';
 import { sendResponse } from './utils/helperFunctions';
 
 dotenv.config();
@@ -29,8 +29,8 @@ const server = http.createServer((
     switch (method) {
       case "GET": return handlerGetMethod(requestPath, res);
       case "POST": return addUser(req, res);
-      case "PUT": return sendResponse(res, 200, getAllUsers());
-      case "DELETE": return sendResponse(res, 200, getAllUsers());
+      case "PUT": return updateUser(req, res);
+      case "DELETE": return deleteUser(req, res);
 
       default: return sendResponse(res, 500, { message: 'Invalid method' });
     }
