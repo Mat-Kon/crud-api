@@ -37,3 +37,10 @@ npm install
  - **age** — user's age (number, required)
  - **hobbies** — user's hobbies (array of strings or empty array, required)
 
+## About tests
+
+1. You need to start the server at any  mode
+2. Run tests
+```
+npm run tests
+```
