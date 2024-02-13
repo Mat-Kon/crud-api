@@ -1,6 +1,4 @@
 import dotenv from 'dotenv';
-import { addUser } from "../modules/usersController";
-
 dotenv.config();
 
 const BASE_URL= `http://localhost:${process.env.PORT}`;
